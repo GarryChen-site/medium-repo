@@ -39,7 +39,7 @@ impl Engine for Photon {
                 Some(spec::Data::Flipv(ref v)) => self.transform(v),
                 Some(spec::Data::Resize(ref v)) => self.transform(v),
                 Some(spec::Data::Watermark(ref v)) => self.transform(v),
-                // 对于目前不认识的 spec，不做任何处理
+                // For the specs that are not recognized for now, no processing will be done.
                 _ => {}
             }
         }
@@ -106,7 +106,7 @@ impl SpecTransform<&Watermark> for Photon {
     }
 }
 
-// photon 库竟然没有提供在内存中对图片转换格式的方法，只好手工实现
+// The photon library surprisingly doesn't provide a method for converting image formats in memory, so it had to be implemented manually.
 fn image_to_buf(img: PhotonImage, format: ImageOutputFormat) -> Vec<u8> {
     let raw_pixels = img.get_raw_pixels();
     let width = img.get_width();

@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-package abi; // 这个名字会被用作编译结果，prost 会产生：abi.rs
+package abi; // This name will be used as the compilation result, and prost will generate: abi.rs.
 
-// 一个 ImageSpec 是一个有序的数组，服务器按照 spec 的顺序处理
+// An ImageSpec is an ordered array, and the server processes the spec in sequence.
 message ImageSpec { repeated Spec specs = 1; }
 
-// 处理图片改变大小
+// Handle image resizing.
 message Resize {
   uint32 width = 1;
   uint32 height = 2;
@@ -29,7 +29,7 @@ message Resize {
   SampleFilter filter = 4;
 }
 
-// 处理图片截取
+// Handle image cropping.
 message Crop {
   uint32 x1 = 1;
   uint32 y1 = 2;
@@ -37,13 +37,13 @@ message Crop {
   uint32 y2 = 4;
 }
 
-// 处理水平翻转
+// Handle horizontal flip.
 message Fliph {}
-// 处理垂直翻转
+// Handle vertical flip.
 message Flipv {}
-// 处理对比度
+// Handle contrast adjustment.
 message Contrast { float contrast = 1; }
-// 处理滤镜
+// Handle filters.
 message Filter {
   enum Filter {
     UNSPECIFIED = 0;
@@ -55,13 +55,13 @@ message Filter {
   Filter filter = 1;
 }
 
-// 处理水印
+// Handle watermarks.
 message Watermark {
   uint32 x = 1;
   uint32 y = 2;
 }
 
-// 一个 spec 可以包含上述的处理方式之一
+// A spec can contain one of the above processing methods.
 message Spec {
   oneof data {
     Resize resize = 1;

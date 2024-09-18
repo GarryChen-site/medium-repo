@@ -79,13 +79,6 @@ async fn generate(
         .await        
         .map_err(|_| StatusCode::BAD_REQUEST)?;    
 
-    // TODO: 处理图片    
-    // let mut headers = HeaderMap::new();    
-    
-    // headers.insert("content-type", HeaderValue::from_static("image/jpeg"));   
-    
-    // Ok((headers, data.to_vec()))
-
     let mut engine : Photon= data
         .try_into()
         .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
@@ -128,7 +121,7 @@ async fn retrieve_image(url: &str, cache: Cache) -> Result<Bytes> {
     Ok(data)
 }
 
-// 调试辅助函数
+// Debugging helper function.
 fn print_test_url(url: &str) {
     use std::borrow::Borrow;
     let spec1 = Spec::new_resize(500, 800, resize::SampleFilter::CatmullRom);

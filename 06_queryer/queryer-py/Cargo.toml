@@ -1,0 +1,20 @@
+[package]
+name = "queryer_py" # Python 模块需要用下划线
+version = "0.1.0"
+edition = "2021"
+
+
+[lib]
+crate-type = ["cdylib"] # 使用 cdylib 类型
+
+[dependencies]
+queryer = { path = "../queryer" } # 引入 queryer
+tokio = { version = "1", features = ["full"] }
+pyo3 = { version = "0.22.2", features = ["extension-module"] }
+
+# [dependencies.pyo3-ffi]
+# version = "0.22.2"
+# features = ["extension-module"]
+
+# [build-dependencies]
+# pyo3-build-config = "0.22.2"

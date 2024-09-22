@@ -1,0 +1,27 @@
+[package]
+name = "queryer"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[[example]]
+name = "dialect"
+
+[[example]]
+name = "covid"
+
+
+[dependencies]
+anyhow = "1" # Error handling; ideally we should use `thiserror` for libraries, but let's keep it simple.
+async-trait = "0.1" # Allows async functions in traits.
+sqlparser = "0.10" # SQL parser.
+polars = { version = "0.15", features = ["json", "lazy"] } # DataFrame library.
+reqwest = { version = "0.11", default-features = false, features = ["rustls-tls"] } # Our old friend, the HTTP client.
+tokio = { version = "1", features = ["fs"]} # Our old friend, the async library, here we need async file handling.
+tracing = "0.1" # Logging.
+
+
+
+[dev-dependencies]
+tracing-subscriber = "0.2" # Logging.
+tokio = { version = "1", features = ["full"]} # In examples, we need more `tokio` features.

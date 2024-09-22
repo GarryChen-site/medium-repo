@@ -25,18 +25,3 @@ fn queryer_py(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(example_sql, m)?)?;
     Ok(())
 }
-
-// use pyo3::prelude::*;
-
-
-// #[pyfunction]
-// fn sum_as_string(a: usize, b: usize) -> PyResult<String> {
-//     Ok((a + b).to_string())
-// }
-
-
-// #[pymodule]
-// fn string_sum(m: &Bound<'_, PyModule>) -> PyResult<()> {
-//     m.add_function(wrap_pyfunction!(sum_as_string, m)?)?;
-//     Ok(())
-// }

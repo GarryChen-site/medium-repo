@@ -85,7 +85,6 @@ impl<'a> TryFrom<&'a Statement> for Sql<'a> {
     }
 }
 
-/// 把 SqlParser 的 Expr 转换成 DataFrame 的 Expr
 impl TryFrom<Expression> for Expr {
     type Error = anyhow::Error;
 
@@ -106,7 +105,6 @@ impl TryFrom<Expression> for Expr {
     }
 }
 
-/// 把 SqlParser 的 BinaryOperator 转换成 DataFrame 的 Operator
 impl TryFrom<Operation> for Operator {
     type Error = anyhow::Error;
 
@@ -130,7 +128,6 @@ impl TryFrom<Operation> for Operator {
     }
 }
 
-/// 把 SqlParser 的 SelectItem 转换成 DataFrame 的 Expr
 impl<'a> TryFrom<Projection<'a>> for Expr {
     type Error = anyhow::Error;
 
@@ -171,7 +168,6 @@ impl<'a> TryFrom<Source<'a>> for &'a str {
     }
 }
 
-/// 把 SqlParser 的 order by expr 转换成 (列名, 排序方法)
 impl<'a> TryFrom<Order<'a>> for (String, bool) {
     type Error = anyhow::Error;
 
@@ -190,7 +186,6 @@ impl<'a> TryFrom<Order<'a>> for (String, bool) {
     }
 }
 
-/// 把 SqlParser 的 offset expr 转换成 i64
 impl<'a> From<Offset<'a>> for i64 {
     fn from(offset: Offset) -> Self {
         match offset.0 {
@@ -203,7 +198,6 @@ impl<'a> From<Offset<'a>> for i64 {
     }
 }
 
-/// 把 SqlParser 的 Limit expr 转换成 usize
 impl<'a> From<Limit<'a>> for usize {
     fn from(l: Limit<'a>) -> Self {
         match l.0 {
@@ -213,7 +207,6 @@ impl<'a> From<Limit<'a>> for usize {
     }
 }
 
-/// 把 SqlParser 的 value 转换成 DataFrame 支持的 LiteralValue
 impl TryFrom<Value> for LiteralValue {
     type Error = anyhow::Error;
     fn try_from(v: Value) -> Result<Self, Self::Error> {

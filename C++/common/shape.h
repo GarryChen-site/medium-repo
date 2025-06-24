@@ -2,57 +2,73 @@
 #define SHAPE_H
 
 #include <stdio.h>
+
 #include <stdexcept>
 
-enum class shape_type {
+enum class shape_type
+{
     circle,
     triangle,
     rectangle,
 };
 
-class shape {
-public:
-    virtual ~shape() {}
+class shape
+{
+  public:
+    virtual ~shape()
+    {
+    }
 };
 
-class circle : public shape {
-public:
-    circle() {
+class circle : public shape
+{
+  public:
+    circle()
+    {
         puts("circle()");
     }
-    ~circle() {
+    ~circle()
+    {
         puts("~circle()");
     }
 };
 
-class triangle : public shape {
-public:
-    triangle() {
+class triangle : public shape
+{
+  public:
+    triangle()
+    {
         puts("triangle()");
     }
-    ~triangle() {
+    ~triangle()
+    {
         puts("~triangle()");
     }
 };
 
-class rectangle : public shape {
-public:
-    rectangle() {
+class rectangle : public shape
+{
+  public:
+    rectangle()
+    {
         puts("rectangle()");
     }
-    ~rectangle() {
+    ~rectangle()
+    {
         puts("~rectangle()");
     }
 };
 
-inline shape* create_shape(shape_type type) {
-    switch (type) {
-        case shape_type::circle:
-            return new circle();
-        case shape_type::triangle:
-            return new triangle();
-        case shape_type::rectangle:
-            return new rectangle();
+inline shape *create_shape(shape_type type)
+{
+    switch (type)
+    {
+    case shape_type::circle:
+        return new circle();
+    case shape_type::triangle:
+        return new triangle();
+    case shape_type::rectangle:
+        return new rectangle();
     }
     throw std::logic_error("Unknown shape type");
 }

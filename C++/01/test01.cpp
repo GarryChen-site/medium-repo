@@ -1,27 +1,36 @@
 #include <stdio.h>
 
-class Obj{
-public:
-    Obj() {
+class Obj
+{
+  public:
+    Obj()
+    {
         puts("Obj()");
     }
-    ~Obj() {
+    ~Obj()
+    {
         puts("~Obj()");
     }
 };
 
-void foo(int n) {
+void foo(int n)
+{
     Obj obj;
-    if (n == 42) {
+    if (n == 42)
+    {
         throw "life, the universe, and everything";
     }
 }
 
-int main() {
-    try {
+int main()
+{
+    try
+    {
         foo(41);
         foo(42);
-    } catch (const char* msg) {
+    }
+    catch (const char *msg)
+    {
         puts(msg);
     }
 }
